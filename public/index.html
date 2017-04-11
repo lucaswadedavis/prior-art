@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Prior Art</title>
+  <!-- Setting the right viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link href="./style.css" rel="stylesheet" type="text/css">
+  <link href="./lib/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="./lib/jquery-ui/jquery-ui.js"></script>
+</head>
+
+<body>
+  <div id="header">
+    <button>Add Entry</button>
+    <p>Prior Art</p>
+  </div>
+  <div id="sortable">
+  </div>
+</body>
+
+<script type="text/javascript">
+  $(function(){getItemsFromServer(init);});
+
+  function init(data) {
+    for (var i = 0; i < data.length; i++) {
+      var entry = $Entry(data[i]);
+      $('#sortable').append(entry);
+    }
+    $('#sortable').sortable();
+    $('button').on('click', function() {
+      $('#sortable').prepend($Entry({}));
+    });
+  };
+
+  function getItemsFromDOM () {
+    var items = [];
+    $('#sortable div.entry').each(function() {
+      var description = $($(this).children('.description')[0]).val();
+      var url = $($(this).children('.url')[0]).val();
+      items.push({description: description, url: url});
+    });
+    return items;
+  };
+
+  function saveItemsToServer(items) {
+    var opts = {
+      headers: {
+        'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(items)
+    };
+    fetch('api', opts)
+      .then(function (data) {
+        console.log('success', data);
+      }).catch(function (error) {
+        console.log('error', error);
+      });
+  };
+
+  function getItemsFromServer(success, failure) {
+    fetch('api')
+      .then(function(res){
+        return res.json();
+      }).then(function(data) {
+        success(data);
+    });
+  };
+
+  function $Entry(item) {
+    var description = item.description || '';
+    var url = item.url || 'http://';
+
+    var $descriptionHeader = $('<h2>').text('DESCRIPTION:');
+    var $descriptionEntry = $('<input class="description" type="text"/>');
+    $descriptionEntry.val(description);
+
+    var $urlHeader = $('<h2>').text('URL:');
+    var $urlEntry = $('<input class="url" type="text" />').val(url);
+    $urlEntry = $('<input class="url" type="text" />');
+    $urlEntry.val(url);
+    $urlEntry.on('keyup', _.debounce(function() {
+      saveItemsToServer(getItemsFromDOM());
+    }, 1000));
+
+    return $('<div class="entry"/>')
+      .append($descriptionHeader, $descriptionEntry, $urlHeader, $urlEntry);
+  }
+</script>
+
+</html>

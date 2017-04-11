@@ -1,0 +1,24 @@
+{
+  "name": "prior-art",
+  "version": "1.0.0",
+  "description": "A GUI for the great _prior_ npm package by 3rdEden.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lucaswadedavis/prior-art.git"
+  },
+  "author": "Luke Davis <lucaswadedavis@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucaswadedavis/prior-art/issues"
+  },
+  "homepage": "https://github.com/lucaswadedavis/prior-art#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "jsonfile": "^2.4.0"
+  }
+}
