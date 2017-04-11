@@ -1,5 +1,10 @@
 # Prior Art
 
-A GUI for the great _prior_ npm package by 3rdEden.
+Like a bibliography for inspiration.
+
+## Todo:
+- Explain how to use the thing.
+- Make it pretty.
+- Give examples.
 
 ### License: MIT
