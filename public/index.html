@@ -75,11 +75,22 @@
     var description = item.description || '';
     var url = item.url || 'http://';
 
-    var $descriptionHeader = $('<h2>').text('DESCRIPTION:');
+    var $deleteButton = $('<span class="remove-item" />').text('REMOVE');
+    $deleteButton.on('click', function() {
+      $(this).parent().remove();
+      saveItemsToServer(getItemsFromDOM());
+    });
+
+
+    var $descriptionHeader = $('<h2 />').text('DESCRIPTION:');
     var $descriptionEntry = $('<input class="description" type="text"/>');
     $descriptionEntry.val(description);
+    $descriptionEntry.on('keyup', _.debounce(function() {
+      saveItemsToServer(getItemsFromDOM());
+    }, 1000));
 
-    var $urlHeader = $('<h2>').text('URL:');
+
+    var $urlHeader = $('<h2 />').text('URL:');
     var $urlEntry = $('<input class="url" type="text" />').val(url);
     $urlEntry = $('<input class="url" type="text" />');
     $urlEntry.val(url);
@@ -88,7 +99,7 @@
     }, 1000));
 
     return $('<div class="entry"/>')
-      .append($descriptionHeader, $descriptionEntry, $urlHeader, $urlEntry);
+      .append($deleteButton, $descriptionHeader, $descriptionEntry, $urlHeader, $urlEntry);
   }
 </script>
 
