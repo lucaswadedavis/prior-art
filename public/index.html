@@ -29,7 +29,9 @@
       var entry = $Entry(data[i]);
       $('#sortable').append(entry);
     }
-    $('#sortable').sortable();
+    $('#sortable').sortable({update: function() {
+      saveItemsToServer(getItemsFromDOM());
+    }});
     $('button').on('click', function() {
       $('#sortable').prepend($Entry({}));
     });
