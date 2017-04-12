@@ -1,3 +1,11 @@
+body {
+  background-color: #f37;
+  background: linear-gradient(to right, #f37, #1969FF);
+  background-size: cover;
+  height: 100%;
+  font-family: arial;
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -5,13 +13,14 @@
   margin: 0;
   padding: 10px;
   width: 100%;
-  background-color: #eee;
-  border-bottom: 1px solid #000;
+  background: #fff;
 }
 
-#header p{
+#header h1 {
   font-size: 2em;
-  margin: 13px 0 0 50px;
+  font-weight: 700;
+  margin: 10px 0 0 35px;
+  letter-spacing: 3px;
 }
 
 #header button {
@@ -20,7 +29,10 @@
   margin: 10px;
   cursor: pointer;
   padding: 5px 35px 5px 35px;
-  background-color: #98ff98;
+  background-color: #f37;
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid #000;
 }
 
 #sortable {
@@ -28,19 +40,22 @@
 }
 
 #sortable div {
-  padding: 10px 12px 10px 50px;
+  padding: 10px 22px 10px 50px;
   margin: 10px;
-  border: 1px solid #000;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 #sortable div h2 {
   font-size: 1.2em;
   margin: 0 0 0 0;
-  color: #555;
+  color: rgba(50, 50, 50, 1);
 }
 
 #sortable div input {
   width: 100%;
+  background: rgba(50, 50, 50, 1);
+  color: #fff;
+  padding: 5px;
 }
 
 #sortable span.remove-item {
@@ -48,5 +63,5 @@
   cursor: pointer;
   color: red;
   font-size: 1.2em;
-  margin-right: -3px;
+  margin-right: -11px;
 }
