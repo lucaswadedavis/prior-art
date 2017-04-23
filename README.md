@@ -5,7 +5,7 @@ Like a bibliography for inspiration.
 ## How to Use:
 
 Install with `npm install --save-dev prior-art`, then be fancy and add
-`prior-art: "node node_modules\/prior-art\/server.js"` to the `scripts`
+`"prior-art": "node node_modules\/prior-art\/server.js"` to the `scripts`
 object in your package.json, so any time later you can run
 `npm run prior-art` from the root-directory of your project and it will
 fire up the prior-art GUI server on `localhost:8081` and write your
