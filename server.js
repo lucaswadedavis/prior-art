@@ -6,9 +6,15 @@ var jsonfile = require('jsonfile');
 
 var app = express();
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
-const fileName = 'prior-art.json';
+const fileName = process.cwd() + '/prior-art.json';
+
+jsonfile.readFile(fileName, (e) => {
+  if (e) jsonfile.writeFile(fileName, {}, (e) => {
+    console.log(e);
+  });
+});
 
 app.get('/api', (req, res) => {
   jsonfile.readFile(fileName,(e, obj) => {
