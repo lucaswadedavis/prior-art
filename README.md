@@ -2,9 +2,8 @@
 
 Like a bibliography for inspiration.
 
-## Todo:
-- Explain how to use the thing.
-- Make it pretty.
-- Give examples.
+## How to Use:
+
+Install with `npm install --save-dev prior-art`... then do other things...
 
 ### License: MIT
